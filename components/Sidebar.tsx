@@ -86,11 +86,12 @@ export function Sidebar() {
         <Link href="/" className="flex items-center space-x-2">
           <Image 
             src="/logo.svg" 
-            alt="Tavily" 
+            alt="Logo" 
             width={32} 
             height={32}
+            priority
           />
-          <span className="text-xl font-semibold">Carson's Org</span>
+          <span className="text-xl font-semibold">tavily</span>
         </Link>
       </div>
 

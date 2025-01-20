@@ -1,10 +1,10 @@
 export function ContactSection() {
   return (
-    <div className="mt-8 text-center">
-      <p className="text-gray-600">
-        Have any questions, feedback or need support? We'd love to hear from you!
+    <div className="text-center mt-8 p-6">
+      <p>
+        Have any questions, feedback or need support? We&apos;d love to hear from you!
       </p>
-      <button className="mt-4 px-6 py-2 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
+      <button className="mt-4 px-6 py-2 rounded-lg border border-gray-200 hover:bg-gray-50">
         Contact us
       </button>
     </div>
