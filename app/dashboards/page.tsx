@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Toaster } from 'react-hot-toast';
-import { useApiKeyStore } from "@/stores/apiKeyStore";
+import { useState, useEffect } from "react";
+import { Dialog } from '@headlessui/react';
+import { Toaster, toast } from 'react-hot-toast';
+import { ApiKey } from '@/types/api';
+import { useApiKeyStore } from '@/stores/apiKeyStore';
 import { CreateKeyModal } from "@/components/api-keys/CreateKeyModal";
 import { EditModal } from "@/components/api-keys/EditModal";
 import { ApiKeyList } from "@/components/api-keys/ApiKeyList";
 import { UsageStats } from "@/components/dashboard/UsageStats";
 import { ContactSection } from "@/components/dashboard/ContactSection";
-import { ApiKey } from '@/types/api';
 
 export default function DashboardPage() {
   const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
@@ -19,7 +20,11 @@ export default function DashboardPage() {
   const { fetchApiKeys, createApiKey } = useApiKeyStore();
 
   useEffect(() => {
-    fetchApiKeys();
+    const loadApiKeys = async () => {
+      const keys = await fetchApiKeys();
+      setApiKeys(keys);
+    };
+    loadApiKeys();
   }, [fetchApiKeys]);
 
   const handleCreateKey = async (name: string) => {
