@@ -8,8 +8,10 @@ import { EditModal } from "@/components/api-keys/EditModal";
 import { ApiKeyList } from "@/components/api-keys/ApiKeyList";
 import { UsageStats } from "@/components/dashboard/UsageStats";
 import { ContactSection } from "@/components/dashboard/ContactSection";
+import { ApiKey } from '@/types/api';
 
 export default function DashboardPage() {
+  const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editingKey, setEditingKey] = useState<ApiKey | null>(null);
