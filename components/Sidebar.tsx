@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 interface NavItem {
   label: string;
@@ -83,7 +84,12 @@ export function Sidebar() {
     <div className="w-64 min-h-screen bg-white border-r border-gray-200">
       <div className="p-4">
         <Link href="/" className="flex items-center space-x-2">
-          <img src="/logo.svg" alt="Carson's Org" className="h-8 w-8" />
+          <Image 
+            src="/logo.svg" 
+            alt="Tavily" 
+            width={32} 
+            height={32}
+          />
           <span className="text-xl font-semibold">Carson's Org</span>
         </Link>
       </div>
