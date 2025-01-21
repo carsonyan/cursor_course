@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Dialog } from '@headlessui/react';
-import { Toaster, toast } from 'react-hot-toast';
-import { ApiKey } from '@/types/api';
+//import { Dialog } from '@headlessui/react';
+import { Toaster } from 'react-hot-toast'; //toast
+import { ApiKey } from '@/stores/apiKeyStore';
 import { useApiKeyStore } from '@/stores/apiKeyStore';
 import { CreateKeyModal } from "@/components/api-keys/CreateKeyModal";
 import { EditModal } from "@/components/api-keys/EditModal";
@@ -12,7 +12,7 @@ import { UsageStats } from "@/components/dashboard/UsageStats";
 import { ContactSection } from "@/components/dashboard/ContactSection";
 
 export default function DashboardPage() {
-  const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
+  const [, setApiKeys] = useState<ApiKey[]>([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editingKey, setEditingKey] = useState<ApiKey | null>(null);

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { toast } from 'react-hot-toast';
 
-interface ApiKey {
+export interface ApiKey {
   id: string;
   name: string;
   key: string;
