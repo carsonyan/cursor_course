@@ -1,23 +1,23 @@
 import { create } from 'zustand';
 import { toast } from 'react-hot-toast';
 
-export interface ApiKey {
+interface ApiKey {
   id: string;
   name: string;
   key: string;
-  createdAt: string;
-  usage: number;
   fullKey?: string;
+  usage: number;
   isRevealed?: boolean;
   monthlyLimit?: number;
   enablePII?: boolean;
+  createdAt?: string;
 }
 
 interface ApiKeyStore {
   apiKeys: ApiKey[];
   isLoading: boolean;
-  fetchApiKeys: () => Promise<void>;
-  createApiKey: (name: string) => Promise<void>;
+  fetchApiKeys: () => Promise<ApiKey[]>;
+  createApiKey: (name: string) => Promise<ApiKey>;
   deleteApiKey: (id: string) => Promise<void>;
   updateApiKey: (id: string, data: Partial<ApiKey>) => Promise<void>;
   toggleKeyReveal: (id: string) => void;
@@ -43,9 +43,11 @@ export const useApiKeyStore = create<ApiKeyStore>((set, get) => ({
         })),
         isLoading: false
       });
+      return data as ApiKey[];
     } catch (error) {
       console.error("Error fetching keys:", error);
       set({ isLoading: false });
+      throw error;
     }
   },
 
@@ -61,6 +63,7 @@ export const useApiKeyStore = create<ApiKeyStore>((set, get) => ({
       if (!response.ok) throw new Error(data.error || "Failed to create key");
       
       await get().fetchApiKeys();
+      return data as ApiKey;
     } catch (error) {
       console.error("Error creating key:", error);
       throw error;
